@@ -1,2 +1,2 @@
-# Moodle
-요것은 기가막힌 LMS입니닷
+# python_analysis
+파이썬 코드분석

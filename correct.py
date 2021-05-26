@@ -4,4 +4,6 @@ def summate(values):
         total += value
     return total
 
-assert summate([1,2,3]) == 6
+assert summate([1,2,3]) == 8
+
+print()

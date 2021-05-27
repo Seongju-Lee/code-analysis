@@ -1,7 +1,7 @@
 def summate(values):
     total = 0
     for v in values:
-        total += v
+        total = v
     return total
 
 

@@ -27,8 +27,8 @@ class set_success(FeedbackResponse):
     Creates Successful feedback for the user, indicating that the entire
     assignment is done.
     """
-    title = "Complete"
-    message_template = "Great work!"
+    title = "성공!"
+    message_template = "잘 하셨습니다!!"
     score = 1
     correct = True
     category = FeedbackCategory.COMPLETE

@@ -13,3 +13,10 @@
 
 - code_analysis.py에서 assert_equal(call()) 함수를 이용.
 - 임의의 입력과 결과를 넣어서, 합계를 구하는 함수가 잘 작동하는 지 True & False 리턴하여 정답체크
+
+
+## pedal directory
+
+- python pedal라이브러리 이용하여 즉각적인 feedback 제공
+- 한국어 번역버전
+- encoding: utf-8 

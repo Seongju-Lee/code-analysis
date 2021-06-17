@@ -10,10 +10,11 @@ import subprocess
 # print(output.decode('ISO-8859-2').strip())
 # # subprocess 모듈을 사용하여 리턴값 저장 가능
 
-import locale
-os_encoding = locale.getpreferredencoding()
-cmd = [ ... ]
-po = subprocess.Popen("pedal feedback code_analysis.py ./student.py", stdout=subprocess.PIPE)
+# import locale
+# os_encoding = locale.getpreferredencoding()
+# cmd = [ ... ]
+po = subprocess.Popen(["pedal", "feedback" , "code_analysis.py",  "type_ex.py"], stdout=subprocess.PIPE)
+# print(po)
 po.wait()
 out = po.stdout.read().decode('UTF-8').strip()
 

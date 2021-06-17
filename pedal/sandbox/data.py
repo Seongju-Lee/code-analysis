@@ -155,7 +155,7 @@ def format_contexts(contexts, format):
                 action_message = SandboxContextKind.describe_action(context.kind)
                 execution_text.add_message(action_message+":", context.code)
             elif context.filename in (context.submission.main_file, ):
-                execution_text.add_message(f"I ran your code.")
+                execution_text.add_message(f"코드를 실행시켰습니다.")
             else:
                 filename_message = format.filename(context.filename)
                 execution_text.add_message(f"I ran the file {filename_message}.")

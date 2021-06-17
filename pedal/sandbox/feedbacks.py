@@ -10,10 +10,10 @@ from pedal.sandbox import TOOL_NAME
 from pedal.utilities.text import add_indefinite_article
 
 RUNTIME_ERROR_MESSAGE_HEADER = (
-    "{exception_name} occurred:\n\n"
+    "{exception_name}가 발생:\n\n"
     "{exception_message}\n\n"
     "{context_message}\n"
-    "The traceback was:\n{traceback_message}\n"
+    "에러발생 부분은 아래와 같습니다:\n{traceback_message}\n"
 )
 
 
@@ -70,139 +70,118 @@ class runtime_error(FeedbackResponse):
                          location=location, **kwargs)
 
 
+
 class type_error(runtime_error):
     """ Type Error """
     title = "Type Error"
     message_template = (RUNTIME_ERROR_MESSAGE_HEADER + "\n" +
-                        "Type errors occur when you use an operator or "
-                        "function on the wrong type of value. For example, "
-                        "using `+` to add to a list (instead of `.append`), or "
-                        "dividing a string by a number.\n\n"
-                        "Suggestion: To fix a type error, you should trace "
-                        "through your code. Make sure each expression has the "
-                        "type you expect it to have.")
+                        "타입 에러는 연산할때나 잘못된 값의 함수를 사용할 때 발생합니다\n"
+                        "예를 들어, '+'를 이용하여 리스트에 값을 더하거나(append 대신에)\n "
+                        "문자열을 숫자로 나눌 때 발생합니다."
+                        "\n\n"
+                        "피드백 내용: 타입에러를 고치기 위해서 코드를 쭉 보세요."
+                        "각 식에 올바른 타입이 들어갔는지 천천히 살펴보세요!")
 
 
 class name_error(runtime_error):
     """ Runtime NameError """
     title = "Name Error"
     message_template = (RUNTIME_ERROR_MESSAGE_HEADER + "\n" +
-                        "A name error means you have used a variable that has "
-                        "no value.  You may have a typo, so check the "
-                        "spelling. Or, you may have forgotten to initialize a "
-                        "variable.\n\n"
-                        "Suggestion: Trace your code and make sure each "
-                        "variable was set before it was read.")
+                        "name error는 변수가 없는 것을 의미합니다.\n"
+                        "변수 철자를 확인해보거나 다시 입력해보세요."
+                        "또는 변수 초기화를 하지 않았는지도 확인해보세요\n"
+                        "\n"
+                        "피드백 내용: 코드를 처음부터 잘 살펴보면서 틀린 부분을 확인해보세요!!")
+
 
 
 class value_error(runtime_error):
     """ Runtime ValueError """
     title = "Value Error"
     message_template = (RUNTIME_ERROR_MESSAGE_HEADER + "\n" +
-                        "A ValueError occurs when you pass the wrong type of "
-                        "value to a function. For example, you try to convert "
-                        "a string without numbers to an integer (like "
+                        "ValueError는 잘못된 타입의 값을 함수에 전달할 때 발생합니다.\n"
+                        "예를 들어, 문자를 숫자형으로 바꾼다고 시도하는 경우입니다.("
                         "`int('Five')`).\n\n"
-                        "Suggestion: Read the error message to see which "
-                        "function had the issue. Check what type the function "
-                        "expects. Then trace your code to make sure you pass "
-                        "in that type.")
+                        "피드백 내용: 에러메시지를 잘 읽어보세요."
+                        "타입과 관련돼서 잘못되게 함수를 호출하지 않았는지 확인해보세요!!"
+                        )
 
 
 class attribute_error(runtime_error):
     """ Runtime AttributeError """
     title = "Attribute Error"
     message_template = (RUNTIME_ERROR_MESSAGE_HEADER + "\n" +
-                        "An AttributeError means you used an attribute or "
-                        "method that does not exist. For example, you wrote "
-                        "`text.delete()` even though there is no `delete` "
-                        "method.\n\n"
-                        "Suggestion: Make sure that you spelled the method or "
-                        "attribute correctly. Then, trace your code to check "
-                        "that the dot's left expression is the correct type.")
+                        "AttributeError는 속성이나 메소드가 존재하지 않는 것입니다."
+                        "예를 들어, `delete`라는 메소드는 없는데, `text.delete()`라는 코드를 입력했을 때입니다.\n"
+                        "\n\n"
+                        "피드백 내용: 메소드나 속성을 올바르게 입력했는지 확인해보세요\n"
+                        "메소드 호출을 위한 `.`도 올바르게 쓰여졌는지도 확인해보세요!!")
 
 
 class index_error(runtime_error):
     """ Runtime IndexError """
     title = "Index Error"
     message_template = (RUNTIME_ERROR_MESSAGE_HEADER + "\n" +
-                        "An IndexError means that you indexed past the end of "
-                        "a string or a list.  For example, if you access index "
-                        "5 in a list with 3 items.\n\n"
-                        "Suggestion: Remember that the first position in a "
-                        "list or string is 0. Often, you will be off by just "
-                        "one index position, so check your math. Also, make "
-                        "sure the list or string has the right value.")
+                        "IndexError는 문자열이나 리스트에서 없는 자리를 인덱싱한 것입니다.\n"
+                        "예를 들어, 3개의 값이 들어있는 리스트에서 5번 자리를 인덱싱하는 것입니다.\n\n"
+                        "피드백 내용: 인덱스 번호는 맨 첫자리가 0이라는 것을 반드시 기억하세요!!")
 
 
 class zero_division_error(runtime_error):
     """ Runtime ZeroDivisionError """
     title = "Division by Zero Error"
     message_template = (RUNTIME_ERROR_MESSAGE_HEADER + "\n" +
-                        "A ZeroDivisionError means you divided by 0. The "
-                        "denominator (the right side of a division expression) "
-                        "cannot be 0.\n\n"
-                        "Suggestion: Check that you are dividing by the "
-                        "correct value. Or, you might need to add an `if` "
-                        "statement to handle the zero case.")
+                        "ZeroDivisionError는 0으로 나누었을 때 나타나는 것입니다.\n"
+                        "\n\n"
+                        "피드백 내용: 나눗셈을 정확한 값으로 했는 지 확인해보세요!!")
 
 
 class indentation_error(runtime_error):
     """ Syntax IndentationError """
     title = "Indentation Error"
     message_template = (RUNTIME_ERROR_MESSAGE_HEADER + "\n" +
-                        "An IndentationError means you have not indented your "
-                        "code correctly. You have too many or too few spaces.\n\n"
-                        "Suggestion: Check the line number, and the lines "
-                        "before and after. Check the body of each function "
-                        "definition, `if` statement, and `for` loop. Remember, "
-                        "all the statements INSIDE of a body have the same "
-                        "indentation.")
+                        "IndentationError는 들여쓰기가 올바르지 않은 것입니다."
+                        "공백이 너무 많거나 적은지 확인해보세요\n\n"
+                        "피드백 내용: 줄 번호를 확인하고 앞줄, 뒷줄을 잘 살펴보세요.\n"
+                        "그리고, 각 함수의 정의나 부분도 잘 보세요."
+                        "참고로 모든 하나의 구문(if, for등)은 같은 들여쓰기여야 합니다!!")
 
 
 class import_error(runtime_error):
     """ Runtime ImportError """
     title = "Import Error"
     message_template = (RUNTIME_ERROR_MESSAGE_HEADER + "\n" +
-                        "An ImportError means you tried to import a module "
-                        "that does not exist. You might have a typo or a file "
-                        "might be in the wrong location.\n\n"
-                        "Suggestion: Check the spelling and capitalization of "
-                        "the module's name. If you are importing a file, then "
-                        "check that it is in the correct folder.")
+                        "ImportError는 불러올 모듈이 존재하지 않다는 것입니다."
+                        "올바르게 임포트할 내용을 적었는 지 확인하세요.\n\n"
+                        "피드백 내용: 모듈의 이름을 잘 확인해보거나, 위에 존재하는 라이브러리 추가를 했는지 확인하세요.\n"
+                        "만약 다 정확하다면, 파일의 경로 중 폴더가 있는 폴더인지 확인해보세요!!")
 
 
 class io_error(runtime_error):
     """ Runtime IOError """
     title = "Input/Output Error"
     message_template = (RUNTIME_ERROR_MESSAGE_HEADER + "\n" +
-                        "An IOError means you tried to open a file that was "
-                        "not available.\n\n"
-                        "Suggestion: Make sure that the file is in the "
-                        "correct folder. Then, make sure you spelled the "
-                        "filename correctly.")
-
+                        "IOError는 존재하지 않는 파일을 열려고 할 때 발생됩니다."
+                        "\n\n"
+                        "피드백 내용: 파일이 정확한 폴더에 있는 지 확인하고,\n파일명이나 폴더명도 꼭 확인해보세요!")
 
 class key_error(runtime_error):
     """ Runtime KeyError """
     title = "Key Error"
     message_template = (RUNTIME_ERROR_MESSAGE_HEADER + "\n" +
-                        "A KeyError means you accessed a non-existent key in "
-                        "a dictionary.\n\n"
-                        "Suggestion: First, check that you spelled the key "
-                        "correctly. Make sure the key has the right type and "
-                        "value. Then, check that the dictionary actually has "
-                        "that key.")
+                        "KeyError는 딕셔너리에서 존재하지 않는 키를 조회할 때 발생합니다."
+                        "\n\n"
+                        "피드백 내용: 첫째, 키의 이름을 올바르게 입력했는 지 확이하세요.\n"
+                        "이름이 맞다면, 딕셔너리에 그 키가 있는 지 직접 확인해보세요!!")
 
 
 class memory_error(runtime_error):
     """ Runtime MemoryError """
     title = "Memory Error"
     message_template = (RUNTIME_ERROR_MESSAGE_HEADER + "\n" +
-                        "A MemoryError means your program ran out of mental "
-                        "space.\n\n"
-                        "Suggestion: You might have an infinite loop. Or, you "
-                        "might not be filtering your data enough.")
+                        "MemoryError는 현재 프로그램이 너무 힘든 것입니다.\n\n"
+                        "피드백 내용: 무한 반복문이 있는 지 확인해보세요\n"
+                        "없다면, 데이터를 충분히 가공하고 사용해보세요!")
 
 
 class timeout_error(runtime_error):

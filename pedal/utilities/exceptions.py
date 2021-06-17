@@ -228,9 +228,9 @@ class ExpandedTraceback:
             str: The text of the message.
         """
         traceback_message = "\n".join([
-            (f"Line {formatter.line(frame.lineno)}"
-             f" of file {formatter.filename(frame.filename)}" +
-             (f" in {formatter.frame(frame.name)}\n"
+            (f"{formatter.line(frame.lineno)}번줄"
+             +
+             (f"-> {formatter.frame(frame.name)}\n"
               if frame.name != "<module>" and frame.name is not None
               else "\n") +
              f"{formatter.python_code(frame.line)}\n")

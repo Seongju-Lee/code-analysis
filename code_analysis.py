@@ -1,6 +1,4 @@
 from pedal import *
-
-
 # ########################
 # # 함수 매칭 유무 확인
 # ########################
@@ -41,8 +39,6 @@ from pedal import *
 # # Check the actual output
 # assert_output(student, "7")
 
-
-from pedal import *
 
 # Partial credit for good progress
 if find_asts("For"):
